@@ -10,13 +10,11 @@ The purpose of this lab is to walk the user through the process of creating two 
 One of the VM's will work as the domain controller that manages all the network devices while the other will be a client server that non-admin users have access to.
 After setting up both VM's to work with Active Directory, a few tests will be run such as unlocking user accounts, reseting user passwords, and disabling/enabling user accounts <br />
 
-<h2>Environments and Technologies Used</h2>
+<h2>Environments and Technologies</h2>
 
-Languages Used: Powershell
+**Environments Used:** Azure Cloud Platform, Windows 10 Pro (Client VM), Windows Server 2022 Datacenter: Azure Edition (Domain Controller VM)
 
-Environments Used: Azure, Windows 10(22H2), Windows Server 2022
-
-Technology/Applications/Services: Azure Virtual Machines, Remote Desktop, Active Directory Domain Services
+**Technology/Applications/Services Used:** Azure Virtual Machines, Resource Groups, Virtual Network, Virtual Network Interface Cards (NIC), Remote Desktop, Active Directory Domain Services (AD DS), Group Policy Management Console (GPMC), Windows Defender Firewall, Command Line Utilities 
 
 
 
