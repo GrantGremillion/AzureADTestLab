@@ -6,15 +6,15 @@
 
 
 <h2>Project Summary</h2>
-The purpose of this lab is to walk the user through the process of creating two VM's within Microsoft Azure and then configuring them to work with Active Directory.
-One of the VM's will work as the domain controller that manages all the network devices while the other will be a client server that non-admin users have access to.
-After setting up both VM's to work with Active Directory, a few tests will be run such as unlocking user accounts, reseting user passwords, and disabling/enabling user accounts <br />
+The purpose of this lab is to walk the user through the process of creating two VMs within Microsoft Azure and then configuring them to work with Active Directory.
+One of the VMs will work as the domain controller that manages all the network devices while the other will be a client server that non-admin users have access to.
+After setting up both VMs to work with Active Directory, a few tests will be run such as unlocking user accounts, resetting user passwords, and disabling/enabling user accounts <br />
 
 <h2>Environments and Technologies</h2>
 
 **Environments Used:** Azure Cloud Platform, Windows 10 Pro (Client VM), Windows Server 2022 Datacenter: Azure Edition (Domain Controller VM)
 
-**Technology/Applications/Services Used:** Azure Virtual Machines, Resource Groups, Virtual Network, Virtual Network Interface Cards (NIC), Remote Desktop, Active Directory Domain Services (AD DS), Group Policy Management Console (GPMC), Windows Defender Firewall, Command Line Utilities 
+**Technology/Applications/Services Used:** Azure Virtual Machines (VMs), Resource Groups, Virtual Network, Virtual Network Interface Cards (NIC), Remote Desktop, Active Directory Domain Services (AD DS), Group Policy Management Console (GPMC), Windows Defender Firewall, Command Line Utilities 
 
 
 
@@ -32,7 +32,7 @@ After setting up both VM's to work with Active Directory, a few tests will be ru
 <h3>Final Configurations + Testing</h3>
 - Configuring Lockout Group Policy <br />
 - Lockout Policy Testing <br />
-- Reseting User Passwords <br />
+- Resetting User Passwords <br />
 - Enabling/Disabling User Accounts <br /> <br />
 
 <h2>Azure VM Setup: Creating Resource Group and VNet</h2>
@@ -49,7 +49,7 @@ To start our walkthrough, we will create a resource group that will hold our vir
 ![image](https://github.com/user-attachments/assets/4035f787-0d2d-4eb5-bf60-328e266e709c)
 
 <p>
-When creating your Vnet, give it a name, and make sure it is in the same region as your recource group. Other than that, leave all other settings as default. Next, we can create our domain controller. Make sure the following properties are used for this machine:
+When creating your Vnet, give it a name, and make sure it is in the same region as your resource group. Other than that, leave all other settings as default. Next, we can create our domain controller. Make sure the following properties are used for this machine:
 
 **Resource group**: The one we created earlier
 
@@ -63,7 +63,7 @@ When creating your Vnet, give it a name, and make sure it is in the same region 
 
 **Username and Password**: Anything you want (just make sure you log it in a notepad)
 
-**Networking > Virtual network**: Network we createed before
+**Networking > Virtual network**: Network we created before
 
 After you are ready, click review + create and then Create.
 </p>
@@ -78,19 +78,19 @@ Now, we need to create the Client VM. Use the exact same options as in the Domai
 </p>
 <br />
 
-<h2>Azure VM Setup: Configuration Steps for VM's</h2>
+<h2>Azure VM Setup: Configuration Steps for VMs</h2>
 
 ![image](https://github.com/user-attachments/assets/2b884234-117f-4d17-9269-c62c0b3769ab)
 
 <p>
-In this walkthrough, we are going to configure the domain controller vm to act as a DNS server for the client VM. To do this, we have to set up a few things now, and then some later on. Let's change the domain controller's IP to be static rather than dynamic so that the client server will always be able to reliably find the dns at it's specified static address. To do this, we can click on the domain controller vm from the Virtual Machines window. Then click Networking > Network settings > blue link corresponding to the VM's Network Interface Card (NIC). On the next page, click the blue ipconfig and change the Private IP address settings Allocation from Dynamic to Static and click Save.
+In this walkthrough, we are going to configure the domain controller vm to act as a DNS server for the client VM. To do this, we have to set up a few things now, and then some later on. Let's change the domain controller's IP to be static rather than dynamic so that the client server will always be able to reliably find the DNS at it's specified static address. To do this, we can click on the domain controller vm from the Virtual Machines window. Then click Networking > Network settings > blue link corresponding to the VMs Network Interface Card (NIC). On the next page, click the blue ipconfig and change the Private IP address settings Allocation from Dynamic to Static and click Save.
 </p>
 <br />
 
 ![image](https://github.com/user-attachments/assets/130c389d-5e8a-4bf9-b177-22d9f2bb651a)
 
 <p>
-Next, we need to ensure that the client VM will see the domain controller as a DNS server. Take note of the domain controller's private IP and then go back to the Virtual Machines page and click on the client VM. Then go to Networking > Network settings > blue link corresponding to the VM's Network Interface Card (NIC). Now, on the left side of the screen, click DNS servers. Now, just change the DNS servers from "Inherit from the virtual network" to "Custom" and put down the private IP of the domain controller we took note of earlier. CLick Save at the top.
+Next, we need to ensure that the client VM will see the domain controller as a DNS server. Take note of the domain controller's private IP and then go back to the Virtual Machines page and click on the client VM. Then go to Networking > Network settings > blue link corresponding to the VMs Network Interface Card (NIC). Now, on the left side of the screen, click DNS servers. Now, just change the DNS servers from "Inherit from the virtual network" to "Custom" and put down the private IP of the domain controller we took note of earlier. Click Save at the top.
 </p>
 <br />
 
@@ -142,7 +142,7 @@ Next, click on the flag in the top right and then click "Promote this server to 
 
 
 <p>
-After the restart, get back into the server with remote desktop. Doing this will require us to enter the domain name\user in the username feild as the domain controller now requires a domain source. 
+After the restart, get back into the server with remote desktop. Doing this will require us to enter the domain name\user in the username field as the domain controller now requires a domain source. 
 </p>
 <br />
 
@@ -151,7 +151,7 @@ After the restart, get back into the server with remote desktop. Doing this will
 ![image](https://github.com/user-attachments/assets/bc252d6d-dcbb-4ffc-b063-2dab32e72f51)
 
 <p>
-When you are logged into the VM again, click on the start menu > Windows Administrative Tools > Active Directory Users and Computers. We are going to be creating a domain admin. Before we can do this, lets create two Organizational Units (OU's) called _EMPLOYEES and _ADMINS . Right click on mydomain.com > New > Organizational Unit. 
+When you are logged into the VM again, click on the start menu > Windows Administrative Tools > Active Directory Users and Computers. We are going to be creating a domain admin. Before we can do this, lets create two Organizational Units (OUs) called _EMPLOYEES and _ADMINS . Right click on mydomain.com > New > Organizational Unit. 
 </p>
 <br />
 
@@ -165,7 +165,7 @@ Now, we are going to create the admin user. From within the ADMIN OU, right clic
 ![image](https://github.com/user-attachments/assets/732e513b-460a-4f39-9645-47c2d145ac32)
 
 <p>
-Next, to make this user an admin, we need to add them to a security group. To do so, right click the user > Member Of > Add. Type "domain admins" in the box and click Chekc Names > Ok > Apply > Ok.
+Next, to make this user an admin, we need to add them to a security group. To do so, right click the user > Member Of > Add. Type "domain admins" in the box and click Check Names > Ok > Apply > Ok.
 </p>
 <br />
 
@@ -174,7 +174,7 @@ Next, to make this user an admin, we need to add them to a security group. To do
 ![image](https://github.com/user-attachments/assets/51472794-8aec-4fe8-a39f-97ddece15661)
 
 <p>
-Now, log out of the machine and reconnect using the credentials of the user we just created. Also, use remote desktop to access the client VM as we are going to join it to the domain we configured. To do this, from within the client VM, right click start > System > Rename this PC (advanced) > Computer Name > Change. Switch Member of to Domain, and enter the domain name in the box (mydomain.com) then click ok. It should ask for credentials of an admin to make this change. We can use the admin credentials for the admin user we created before. This should result in a message that says welcome to the domain and then ask you to restart your sever. 
+Now, log out of the machine and reconnect using the credentials of the user we just created. Also, use remote desktop to access the client VM as we are going to join it to the domain we configured. To do this, from within the client VM, right click start > System > Rename this PC (advanced) > Computer Name > Change. Switch Member of to Domain, and enter the domain name in the box (mydomain.com) then click ok. It should ask for credentials of an admin to make this change. We can use the admin credentials for the admin user we created before. This should result in a message that says welcome to the domain and then ask you to restart your server. 
 </p>
 <br />
 
@@ -214,7 +214,7 @@ From within the domain controller, let's now create an employee in the Active Di
 
 
 <p>
-We will first need to make a configuration change that will lock users out of their account if they fail too many password attempts. To do this, we will need to access the Group Policy Management Console. We can get their by right clicking start > Run and typing gpmc.msc > Ok. Expand the tabs on the left until you find the Default Domain Policy under Forest > Domains > mydomain.com. Right click it and then Edit. Now, find the Account lockout policy through Policies > Windows Settings > Security Settings > Account Policies. 
+We will first need to make a configuration change that will lock users out of their account if they fail too many password attempts. To do this, we will need to access the Group Policy Management Console. We can get their by right-clicking start > Run and typing gpmc.msc > Ok. Expand the tabs on the left until you find the Default Domain Policy under Forest > Domains > mydomain.com. Right click it and then Edit. Now, find the Account lockout policy through Policies > Windows Settings > Security Settings > Account Policies. 
 </p>
 <br />
 
@@ -236,7 +236,7 @@ Reset account lockout counter after: 10 minutes
 ![image](https://github.com/user-attachments/assets/c79ce139-2dfb-477a-9ec8-4edcaaf98329)
 
 <p>
-In order for the changes we made to take effect, we need to log into the client VM using admin credentials anf then open the command prompt and run gpupdate /force. Once that has finished, we can logout of the vm and attempt to log back in as a regular user but purposfully use the wrong password over and over again until we are locked out. You should eventually get a message that looks like this: 
+In order for the changes we made to take effect, we need to log into the client VM using admin credentials and then open the command prompt and run gpupdate /force. Once that has finished, we can logout of the vm and attempt to log back in as a regular user but purposefully use the wrong password over and over again until we are locked out. You should eventually get a message that looks like this: 
 </p>
 <br />
 
@@ -248,20 +248,20 @@ Now, in order to unlock the account, we can go back to the domain controller vm 
 </p>
 <br />
 
-<h2>Final Configurations + Testing: Reseting User Passwords</h2>
+<h2>Final Configurations + Testing: Resetting User Passwords</h2>
 
 ![image](https://github.com/user-attachments/assets/79656941-fb05-49b9-9459-967544575493)
 
 
 <p>
-The user's password can also be reset if they forget it by right clicking the user and selecting reset password. Try changing the user's password and re-logging back in with the new password now.
+The user's password can also be reset if they forget it by right-clicking the user and selecting reset password. Try changing the user's password and re-logging back in with the new password now.
 </p>
 <br />
 
 <h2>Final Configurations + Testing: Enabling/Disabling User Accounts</h2>
 
 <p>
-Another feature of admins is the ability to enable and disable user accounts. This can be done by simply right clicking the user and selecting enable/disable account. This feature is usually used in a case where someone retires from the company or is fired. Now, try to login to the non-admin user account after disabling the account. You should see a message that says the account is disabled:
+Another feature of admins is the ability to enable and disable user accounts. This can be done by simply right-clicking the user and selecting enable/disable account. This feature is usually used in a case where someone retires from the company or is fired. Now, try to login to the non-admin user account after disabling the account. You should see a message that says the account is disabled:
 </p>
 <br />
 
