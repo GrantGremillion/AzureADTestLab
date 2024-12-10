@@ -83,7 +83,7 @@ Now, we need to create the Client VM. Use the exact same options as in the Domai
 ![image](https://github.com/user-attachments/assets/2b884234-117f-4d17-9269-c62c0b3769ab)
 
 <p>
-In this walkthrough, we are going to configure the domain controller vm to act as a DNS server for the client VM. To do this, we have to set up a few things now, and then some later on. Let's change the domain controller's IP to be static rather than dynamic so that the client server will always be able to reliably find the DNS at it's specified static address. To do this, we can click on the domain controller vm from the Virtual Machines window. Then click Networking > Network settings > blue link corresponding to the VMs Network Interface Card (NIC). On the next page, click the blue ipconfig and change the Private IP address settings Allocation from Dynamic to Static and click Save.
+In this walkthrough, we are going to configure the domain controller VM to act as a DNS server for the client VM. To do this, we have to set up a few things now, and then some later on. Let's change the domain controller's IP to be static rather than dynamic so that the client server will always be able to reliably find the DNS at it's specified static address. To do this, we can click on the domain controller VM from the Virtual Machines window. Then click Networking > Network settings > blue link corresponding to the VMs Network Interface Card (NIC). On the next page, click the blue ipconfig and change the Private IP address settings Allocation from Dynamic to Static and click Save.
 </p>
 <br />
 
@@ -95,7 +95,7 @@ Next, we need to ensure that the client VM will see the domain controller as a D
 <br />
 
 <p>
-Now, to apply the changes, restart the client vm:
+Now, to apply the changes, restart the client VM:
 </p>
 <br />
 
@@ -236,7 +236,7 @@ Reset account lockout counter after: 10 minutes
 ![image](https://github.com/user-attachments/assets/c79ce139-2dfb-477a-9ec8-4edcaaf98329)
 
 <p>
-In order for the changes we made to take effect, we need to log into the client VM using admin credentials and then open the command prompt and run gpupdate /force. Once that has finished, we can logout of the vm and attempt to log back in as a regular user but purposefully use the wrong password over and over again until we are locked out. You should eventually get a message that looks like this: 
+In order for the changes we made to take effect, we need to log into the client VM using admin credentials and then open the command prompt and run gpupdate /force. Once that has finished, we can logout of the VM and attempt to log back in as a regular user but purposefully use the wrong password over and over again until we are locked out. You should eventually get a message that looks like this: 
 </p>
 <br />
 
@@ -244,7 +244,7 @@ In order for the changes we made to take effect, we need to log into the client 
 
 
 <p>
-Now, in order to unlock the account, we can go back to the domain controller vm and unlock the users account from within the Active Directory Users and Computers Window. Double click the user and under the Account tab, check the box that says "Unlock account" > Apply > Ok. When we try to log back into the client vm with the user account, we should be able to log in again. 
+Now, in order to unlock the account, we can go back to the domain controller VM and unlock the users account from within the Active Directory Users and Computers Window. Double click the user and under the Account tab, check the box that says "Unlock account" > Apply > Ok. When we try to log back into the client VM with the user account, we should be able to log in again. 
 </p>
 <br />
 
